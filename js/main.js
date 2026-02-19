@@ -1,7 +1,12 @@
 let translations = {};
 
 async function loadLanguage(lang) {
-  const response = await fetch(`/translations/${lang}.json`);
+  const response = await fetch(
+  window.location.pathname.includes("/html/")
+    ? `../translations/${lang}.json`
+    : `translations/${lang}.json`
+);
+
   translations = await response.json();
   applyLanguage();
 }
